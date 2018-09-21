@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+	<insert id="reviewBoardInsert" parameterType="reviewDto">
+		INSERT INTO TB_REVIEW(USER_NUM, REVIEW_TITLE, REVIEW_CONTENT, REVIEW_REGID, REVIEW_REGDT) 
+		VALUES(#{userNum},#{reviewTitle},#{reviewContent},#{reviewRegId},now())
+	</insert>	
+	
+	<select id="reviewBoardSelectList" resultType="reviewDto">
+		SELECT  REVIEW_NUM
+		       ,USER_NUM
+		       ,REVIEW_TITLE
+		       ,REVIEW_CONTENT
+		       ,REVIEW_REGID
+		       ,REVIEW_REGDT
+		  FROM	TB_REVIEW 	
+	</select> 
+	
+	<select id="reviewBoardSelect" parameterType="int" resultType="reviewDto">
+		SELECT  REVIEW_NUM
+		       ,USER_NUM
+		       ,REVIEW_TITLE
+		       ,REVIEW_CONTENT
+		       ,REVIEW_REGID
+		       ,REVIEW_REGDT
+		  FROM	TB_REVIEW 	
+		 WHERE REVIEW_NUM= #{reviewNum}
+	</select> 
+</mapper>
+
+
+
+
+
+
+
+

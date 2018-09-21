@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="product">
+	<insert id="insert">
+		INSERT INTO TB_PRODUCT (
+								  PRODUCT_NM
+								  ,PRODUCT_CONTENT
+								  ,PRODUCT_PRICE
+								  ,PRODUCT_CNT
+								  ,PRODUCT_SIZE
+								  ,CGY_NUM
+								  ,PRODUCT_SPRICE
+								  ,PRODUCT_SALEFG
+								  ,PRODUCT_SAVEMONY
+								) VALUES (
+								  #{productNm}  -- PRODUCT_NM - IN varchar(100)
+								  ,#{productContent}  -- PRODUCT_CONTENT - IN text
+								  ,#{productPrice}   -- PRODUCT_PRICE - IN int(11)
+								  ,#{productCnt} -- PRODUCT_CNT - IN int(11)
+								  ,#{productSize} -- PRODUCT_SIZE - IN int(11)
+								  ,#{cgyNum} -- CGY_NUM - IN int(11)
+								  ,#{productSprice} -- PRODUCT_SPRICE - IN int(11)
+								  ,#{productSalefg}  -- PRODUCT_SALEFG - IN char(1)
+								  ,#{productSavemony} -- PRODUCT_SAVEMONY - IN int(11)
+								)
+	</insert>
+	
+	<select id="selectProductList" resultType="productDto">
+		SELECT * 
+		FROM TB_PRODUCT
+	</select>
+</mapper>
+
+
+
+
+
+
+
+

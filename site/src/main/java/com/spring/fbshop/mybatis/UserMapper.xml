@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+	
+	<select id="userListAll" resultType="java.util.HashMap">
+		SELECT U.user_Id userId
+		      ,U.user_Email userEamil
+		      ,U.user_Phone userPhone
+		      ,U.user_Name userName
+		      ,U.user_Addr userAddr
+		      ,T.Team_NM userCheer
+		      ,U.user_Birth userBirth
+		      ,U.user_Smsfg userSmsfg
+		      ,U.user_Mailfg userMailfg
+		      ,U.user_Regdt userRegdt
+		      ,R.RATING_NM ratingCode
+		      ,U.user_SAVEMONY userSavemony     
+		 FROM TB_USER U LEFT JOIN TB_TEAM T
+		 ON U.user_CHEER = T.TEAM_CODE
+		 LEFT JOIN TB_RATING R ON U.RATING_CODE = R.RATING_CODE
+	</select>
+	
+	<insert id="inserUser" parameterType="userDto">
+		INSERT INTO TB_USER( user_ID, user_PHONE, user_EMAIL, user_PWD, user_ADDR, user_NAME, user_BIRTH, user_CHEER, user_SMSFG, user_MAILFG, user_REGDT )
+		VALUES( #{userId}, #{userPhone}, #{userEmail}, #{userPwd}, #{userAddr}, #{userName}, #{userBirth}, #{userCheer}, #{userSmsfg}, #{userMailfg}, now()) 
+	</insert>
+	
+	<select id="test" resultType="userDto">
+		SELECT   user_NUM
+              ,user_ID
+              ,user_PWD
+              ,user_EMAIL
+              ,user_PHONE
+              ,user_NAME
+              ,user_ADDR
+              ,user_BIRTH
+              ,user_SAVEMONY
+        FROM   TB_USER
+        WHERE user_ID='test'
+	</select>
+	
+	<select id="idCheck" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM TB_USER 
+		WHERE USER_ID = #{userId}
+	</select>
+	 
+	
+	<select id="findUser" parameterType="userDto" resultType="userDto">
+		SELECT   USER_NUM
+		        ,USER_ID
+		        ,USER_PWD
+		        ,USER_EMAIL
+		        ,USER_PHONE
+		        ,USER_NAME
+		        ,USER_ADDR
+		        ,USER_BIRTH
+		        ,USER_SAVEMONY
+		        ,RATING_CODE
+		  FROM   TB_USER
+		 WHERE   USER_ID=#{userId}
+		   AND   USER_PWD=#{userPwd}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
